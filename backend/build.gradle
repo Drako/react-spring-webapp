@@ -18,6 +18,7 @@ project(':backend') {
     compile 'org.jetbrains.kotlin:kotlin-reflect'
 
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
 
     compile project(path: ':frontend', configuration: 'webjar')
   }
