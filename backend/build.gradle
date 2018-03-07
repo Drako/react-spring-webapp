@@ -1,0 +1,30 @@
+plugins {
+  id 'org.jetbrains.kotlin.jvm' version '1.2.30'
+  id 'org.jetbrains.kotlin.plugin.spring' version '1.2.30'
+  id 'org.springframework.boot' version '2.0.0.RELEASE'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+project(':backend') {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk7'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    compile 'org.jetbrains.kotlin:kotlin-reflect'
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    compile project(path: ':frontend', configuration: 'webjar')
+  }
+
+  compileKotlin {
+    kotlinOptions {
+      jvmTarget = '1.8'
+    }
+  }
+}

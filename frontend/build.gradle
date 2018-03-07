@@ -1,0 +1,30 @@
+project(':frontend') {
+  task build(type: Exec) {
+    inputs.file('package-lock.json')
+    inputs.file('index.html')
+    inputs.dir('src')
+    inputs.dir('public')
+
+    outputs.dir("$buildDir")
+
+    commandLine 'npm', 'run', 'build'
+  }
+
+  task frontendJar(type: Jar, dependsOn: build) {
+    destinationDir = projectDir.parentFile
+    baseName = 'frontend'
+
+    from(fileTree('build')) {
+      exclude('tmp')
+      into 'META-INF/resources'
+    }
+  }
+
+  configurations {
+    webjar
+  }
+
+  artifacts {
+    webjar frontendJar
+  }
+}
