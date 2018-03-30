@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
-import styles from './App.css';
+import Styles from './App.css';
 import FontAwesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import Brands from '@fortawesome/fontawesome-free-brands';
+import Regular from '@fortawesome/fontawesome-free-regular';
 import Axios from 'axios';
+import MenuBar from "./widgets/MenuBar";
+import SideBar from "./widgets/SideBar";
+import Content from "./widgets/Content";
 
-FontAwesome.library.add(Brands);
+FontAwesome.library.add(Brands, Regular);
 
 class App extends Component {
   state = {
-    message: 'Loading...'
+    message: 'Loading...',
+    sideBarExpanded: true,
   };
 
   componentDidMount = () => {
@@ -20,13 +25,23 @@ class App extends Component {
       });
   };
 
+  sideBarExpanded = (expanded) => {
+    this.setState({
+      sideBarExpanded: expanded
+    })
+  };
+
   render = () => {
     return (
-      <div className={styles.App}>
-        <header className={styles["App-header"]}>
-          <FontAwesomeIcon icon={['fab', 'react']} spin size='5x' className={styles["App-logo"]}/>
-          <h1 className={styles["App-title"]}>{this.state.message}</h1>
-        </header>
+      <div className={Styles.App}>
+        <MenuBar>
+          <FontAwesomeIcon icon={['fab', 'react']} spin size='2x' />
+        </MenuBar>
+        <SideBar onToggleExpansion={this.sideBarExpanded}>
+        </SideBar>
+        <Content expanded={!this.state.sideBarExpanded}>
+          <p>{this.state.message}</p>
+        </Content>
       </div>
     );
   };

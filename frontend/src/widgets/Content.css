@@ -1,0 +1,12 @@
+.Content {
+  overflow: scroll;
+  width: calc(100% - 211px);
+  height: calc(100% - 53px);
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.Content .Fat {
+  width: calc(100% - 53px);
+}

@@ -1,0 +1,28 @@
+.SideBar {
+  display: inline-block;
+  float: left;
+  background-color: cadetblue;
+  border-right: 1px solid black;
+  height: calc(100% - 43px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.SideBar_Toggle {
+  width: calc(100% - 10px);
+  height: 23px;
+  text-align: right;
+}
+
+.SideBar_Content {
+  height: calc(100% - 23px);
+  width: 100%;
+}
+
+.Expanded {
+  width: 200px;
+}
+
+.Collapsed {
+  width: 42px;
+}
